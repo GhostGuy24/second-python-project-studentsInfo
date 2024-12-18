@@ -34,8 +34,8 @@ A simple Python-based console application to manage student records. This projec
 1. Clone this repository or download the source code.
 
    ```bash
-   git clone <repository_url>
-   cd <repository_folder>
+   git clone https://github.com/GhostGuy24/second-python-project-studentsInfo.git
+   
    ```
 
 2. Install the required packages:
