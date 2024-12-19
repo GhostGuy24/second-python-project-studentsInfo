@@ -4,6 +4,7 @@ import os
 import json
 
 students = []
+last_id= 0
 
 
 class Actions(Enum): 
@@ -21,9 +22,16 @@ def menu():
     return input("Choose action to proceed:")
 
 def add_student ():
-      students.append({'name' : input(Fore.GREEN+'Full Name:'),
+      save_into_json_file()
+      global last_id
+      last_id +=1
+
+        
+      students.append({ 'id' : last_id,
+                       'name' : input(Fore.GREEN+'Full Name:'),
                        'age' : input(Fore.GREEN+"Age:"),
-                       'gender' : input(Fore.GREEN+"Gender:")})   
+                       'gender' : input(Fore.GREEN+"Gender:")})  
+ 
       write_into_json_file() 
       return
 
@@ -39,7 +47,8 @@ def display_students():
 def write_into_json_file():
         FILE_NAME = 'students.json'
         with open(FILE_NAME, 'w+') as f:
-            json.dump(students,f)
+            json.dump(students,f, indent= 4)
+        
 
 def save_into_json_file():
         global students
@@ -76,4 +85,30 @@ def delete_student():
                break
      if not deleted:
           print(Fore.RED + "No student found")
+
+def update_student_details():
+     save_into_json_file()
+     exist = False
+     student_to_update = int(input("Choose student id: "))
+
+     for stu in students:
+        print(Fore.MAGENTA + f"Student id:{Fore.GREEN +str(stu['id'])},{Fore.MAGENTA}Full Name: {Fore.GREEN +stu['name']},{Fore.MAGENTA} Age: {Fore.GREEN+ stu['age']},{Fore.MAGENTA} Gender: {Fore.GREEN+stu['gender']}")
+        if student_to_update == stu['id']:
+                exist = True
+                stu['name'] = input(Fore.GREEN + 'Full Name: ')
+                stu['age'] = input(Fore.GREEN + "Age: ")
+                stu['gender'] = input(Fore.GREEN + "Gender: ")
+                print(Fore.GREEN + "Student details updated.")
+                break
+     write_into_json_file()
+     if not exist: print(Fore.RED + "No student found")
+
+        
+
+
+     
+    #  print({Fore.MAGENTA} + f"""Student id:{Fore.GREEN +str(stu['id'])},
+    #           {Fore.MAGENTA} Full Name: {Fore.GREEN +stu['name']},
+    #           {Fore.MAGENTA} Age: {Fore.GREEN+ stu['age']},
+    #           {Fore.MAGENTA} Gender: {Fore.GREEN+stu['gender']}""")
          
