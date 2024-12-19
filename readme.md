@@ -18,10 +18,12 @@ A simple Python-based console application to manage student records. This projec
 3. **Delete Student**:
    - Remove a student's record by name from the system.
 
-4. **Display Students**:
+4. **Update Student**:
+   - Edit user name, age or gender with inputing the assigned id.
+5. **Display Students**:
    - Show all stored student records in a formatted manner.
 
-5. **Save and Load**:
+6. **Save and Load**:
    - All records are saved in a `students.json` file and loaded upon program start.
 
 ## Prerequisites
